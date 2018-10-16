@@ -1,3 +1,8 @@
+!! Author Ryo Urano
+!! This source code is re-written from Java code in the book of 増補改訂版JAVA言語で学ぶデザインパターン入門 written by Yuki Hiroshi.
+!! Fortran code is written by Urano based on Java code.
+
+
 module abstractIterator
   implicit none 
   private
