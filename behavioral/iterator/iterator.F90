@@ -106,6 +106,7 @@ contains
     class(*),allocatable::obj
     ! class(Book),allocatable::obj
 
+!! I just worry about whether this makes memory leak?
     allocate(obj,source=self%bookshelf_%getBookAt(self%index) )
     self%index=self%index+1
 
