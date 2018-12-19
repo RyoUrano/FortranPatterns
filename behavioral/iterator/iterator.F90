@@ -112,8 +112,20 @@ contains
 
   end function next_bookshelf
 
+  function iteratorbook(self) result(it)
+    class(BookShelf),intent(in)::self
+    class(bookshelfiterator),allocatable::it
+    it= new_BookShelfItrator(self) 
+  end function iteratorbook
 
+  function new_BookShelfItrator(inbookshelf) result(out)
+   class(BookShelf)::inbookshelf
+   type(BookshelfIterator)::out
+   out%bookshelf_ = inbookshelf
+   out %index=1
+  end function new_BookShelfItrator
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   function getBookAt(self,index) result(book0)
     class(BookShelf),intent(in)::self
     integer ,intent(in)::index
@@ -134,11 +146,6 @@ contains
     len=self%last
   end function getLength
 
-  function iteratorbook(self) result(it)
-    class(BookShelf),intent(in)::self
-    class(bookshelfiterator),allocatable::it
-    it= new_BookShelfItrator(self) 
-  end function iteratorbook
 
   function getname (self) result(name)
     class(Book),intent(in)::self
@@ -158,13 +165,6 @@ contains
     type(BookShelf)::out
     allocate(out%books(param))
   end function new_BookShelf
-
-  function new_BookShelfItrator(inbookshelf) result(out)
-   class(BookShelf)::inbookshelf
-   type(BookshelfIterator)::out
-   out%bookshelf_ = inbookshelf
-   out %index=1
-  end function new_BookShelfItrator
 
 
 
@@ -198,8 +198,6 @@ do while(it%hasNext())
       write (*,*)  this%getName()
    end select
    ! this= it%next()
-
-
  end associate tag
 
 end do
